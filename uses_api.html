@@ -27,18 +27,20 @@
               displayData += `<p><strong>Phonetic: </strong> ${data[0].phonetic}</p>`;
             }
 
-            data[0].meanings.forEach((meaning) => {
-              displayData += `
-                <h3>
-                  ${meaning.partOfSpeech}
-                </h3>
-                <ol>
-              `;
-              meaning.definitions.forEach((definition) => {
-                displayData += `<li><p> ${definition.definition}</p></li>`;
+            if (data[0].meanings) {
+              data[0].meanings.forEach((meaning) => {
+                displayData += `
+                  <h3>
+                    ${meaning.partOfSpeech}
+                  </h3>
+                  <ol>
+                `;
+                meaning.definitions.forEach((definition) => {
+                  displayData += `<li><p> ${definition.definition}</p></li>`;
+                });
+                displayData += `</ol>`;
               });
-              displayData += `</ol>`;
-            });
+            }
 
             document.getElementById("cData").innerHTML = displayData;
           })
